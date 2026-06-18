@@ -1,27 +1,24 @@
 import './App.css'
 import heroImage from './assets/hero.png'
 
-<img src={heroImage} alt="Kelven" />
-
 function App() {
-  // A definição dos dados fica AQUI, antes do return
   const projects = [
     {
       title: "CliniQ Pro",
       description: "Plataforma completa para gestão de clínicas, prontuário eletrônico e laudos cognitivos.",
-      image: "/clinicpro.png", // A barra "/" indica a pasta public
+      image: "clinicpro.png", // Removi a barra inicial
       link: "http://2.25.185.223/login"
     },
     {
       title: "Totem Unimed",
       description: "Interface de autoatendimento para emissão de 2ª via de boletos, otimizando o fluxo de atendimento.",
-      image: "/totemunimed.png",
+      image: "totemunimed.png", // Removi a barra inicial
       link: "https://totemunimed.unimedpatosdeminas.com.br/"
     },
     {
       title: "Gestão de Desenvolvimento",
       description: "Painel centralizado para controle de deploys e tarefas de desenvolvimento.",
-      image: "/gestaodesenvolvimento.png",
+      image: "gestaodesenvolvimento.png", // Removi a barra inicial
       link: "#"
     }
   ];
@@ -32,6 +29,7 @@ function App() {
         
         {/* Seção Hero */}
         <section className="flex flex-col items-center text-center space-y-6">
+          <img src={heroImage} alt="Kelven" className="w-32 h-32 rounded-full mb-4" />
           <span className="px-3 py-1 text-sm font-medium text-integra-accent bg-purple-100 dark:bg-purple-900/20 rounded-full">
             Integradata
           </span>
@@ -62,8 +60,12 @@ function App() {
           <div className="grid md:grid-cols-3 gap-6">
             {projects.map((proj, i) => (
               <div key={i} className="border border-slate-200 dark:border-slate-700 rounded-xl p-4 hover:shadow-lg transition-shadow">
-                {/* Certifique-se de colocar as imagens na pasta 'public' */}
-                <img src={proj.image} alt={proj.title} className="rounded-lg mb-4 h-40 w-full object-cover" />
+                {/* O segredo está aqui: import.meta.env.BASE_URL */}
+                <img 
+                  src={`${import.meta.env.BASE_URL}${proj.image}`} 
+                  alt={proj.title} 
+                  className="rounded-lg mb-4 h-40 w-full object-cover" 
+                />
                 <h3 className="font-bold text-xl mb-2">{proj.title}</h3>
                 <p className="text-slate-600 dark:text-slate-400 text-sm mb-4">{proj.description}</p>
                 <a href={proj.link} target="_blank" rel="noopener noreferrer" className="text-integra-accent font-medium hover:underline">Ver projeto →</a>
