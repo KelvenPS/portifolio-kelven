@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+@theme {
+  --color-integra-accent: #aa3bff;
+  --color-integra-dark: #16171d;
+}
